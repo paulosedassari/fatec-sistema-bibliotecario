@@ -1,13 +1,18 @@
 package br.com.fatec.sistema.bibliotecario.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+import br.com.fatec.sistema.bibliotecario.utils.Status;
 import lombok.Data;
 
 @Data
@@ -15,28 +20,25 @@ import lombok.Data;
 public class Acervo implements Serializable {
 
 	private static final long serialVersionUID = 3457074876884361210L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id = 0l;
-	
-	@Column(length = 50, nullable = true)
-	private String nome = "";
-	
-	@Column(length = 25, nullable = true)
-	private String editora = "";
-	
-	@Column(length = 10, nullable = true)
-	private String dtInclusao = "";
-	
-	@Column(length = 15, nullable = true)
-	private String situacao = "";
-	
-	@Column(length = 50, nullable = true)
-	private Long isbn = 0l;
+	private Long idAcervo = 0l;
 
-	public Acervo(Long id, String nome, String editora, String dtInclusao, String situacao, Long isbn) {
-		this.id = id;
+	private String nome = "";
+	private String editora = "";
+	private LocalDateTime dtInclusao = LocalDateTime.now();
+	private Long isbn = 0l;
+	
+	@Enumerated(EnumType.STRING)
+	private Status situacao = Status.DISPONIVEL;
+	
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
+
+	public Acervo(Long idAcervo, String nome, String editora, LocalDateTime dtInclusao, Status situacao, Long isbn) {
+		this.idAcervo = idAcervo;
 		this.nome = nome;
 		this.editora = editora;
 		this.dtInclusao = dtInclusao;
