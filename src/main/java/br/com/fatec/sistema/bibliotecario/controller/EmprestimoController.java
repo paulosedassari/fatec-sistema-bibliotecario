@@ -10,26 +10,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fatec.sistema.bibliotecario.model.Usuario;
-import br.com.fatec.sistema.bibliotecario.repository.UsuarioRepository;
+import br.com.fatec.sistema.bibliotecario.model.DadosEmprestimo;
+import br.com.fatec.sistema.bibliotecario.model.Emprestimo;
+import br.com.fatec.sistema.bibliotecario.service.ServiceEmprestimo;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/emprestimo")
 @CrossOrigin
-public class UsuarioController {
+public class EmprestimoController {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private ServiceEmprestimo serviceEmprestimo;
 
 	@GetMapping("/buscarTodos")
-	public List<Usuario> buscarTodos() {
-		return usuarioRepository.findAll();
+	public List<Emprestimo> buscarTodos() {
+		System.out.println("passou aqui");
+		return serviceEmprestimo.findAll();
 	}
 
 	@PostMapping("/incluir")
-	public void incluirUsuario(@RequestBody Usuario usuario) {
-		System.out.println(usuario);
-		usuarioRepository.save(usuario);
+	public void incluirEmprestimo(@RequestBody DadosEmprestimo dadosemprestimo) {
+		serviceEmprestimo.associarEmprestimo(dadosemprestimo);
 	}
 
 }

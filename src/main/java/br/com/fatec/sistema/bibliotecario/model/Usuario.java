@@ -26,18 +26,18 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUsuario = 0l;
 
-	private String nome = "";
+	private String nomeUsuario = "";
 	private String cpf = "";
 	private String email = "";
 	private String telefone = "";
 	private LocalDate dtNascimento;
-	private LocalDateTime dtInclusao = LocalDateTime.now();
-	private Long ra = 0l;
-	private Integer cep = 0;
+	private LocalDateTime dtInclusaoUsuario = LocalDateTime.now();
+	private String ra = "";
+	private String cep = "";
 	private String localidade = "";
 	private String bairro = "";
 	private String logradouro = "";
-	private Integer numero = 0;
+	private Integer numLogradouro = 0;
 	private String uf = "";
 
 	@Enumerated(EnumType.STRING)
@@ -54,21 +54,21 @@ public class Usuario implements Serializable {
 	}
 
 	public Usuario(Long idUsuario, String nome, String cpf, String email, String telefone, LocalDate dtNascimento,
-			LocalDateTime dtInclusao, Long ra, Integer cep, String localidade, String bairro, String logradouro,
-			Integer numero, String uf, Status categoria, List<Acervo> obras) {
+			LocalDateTime dtInclusao, String ra, String cep, String localidade, String bairro, String logradouro,
+			Integer numLogradouro, String uf, Status categoria, List<Acervo> obras) {
 		this.idUsuario = idUsuario;
-		this.nome = nome;
+		this.nomeUsuario = nome;
 		this.cpf = cpf;
 		this.email = email;
 		this.telefone = telefone;
 		this.dtNascimento = dtNascimento;
-		this.dtInclusao = dtInclusao;
+		this.dtInclusaoUsuario = dtInclusao;
 		this.ra = ra;
 		this.cep = cep;
 		this.localidade = localidade;
 		this.bairro = bairro;
 		this.logradouro = logradouro;
-		this.numero = numero;
+		this.numLogradouro = numLogradouro;
 		this.uf = uf;
 		this.categoria = categoria;
 		this.obras = obras;

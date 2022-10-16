@@ -1,6 +1,7 @@
 package br.com.fatec.sistema.bibliotecario.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -23,26 +24,32 @@ public class Acervo implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idAcervo = 0l;
+	private Long idObra = 0l;
 
-	private String nome = "";
+	private String nomeObra = "";
 	private String editora = "";
-	private LocalDateTime dtInclusao = LocalDateTime.now();
-	private Long isbn = 0l;
-	
+	private LocalDate dtPublicacao;
+	private LocalDateTime dtInclusaoObra = LocalDateTime.now();
+	private String isbn = "";
+
 	@Enumerated(EnumType.STRING)
-	private Status situacao = Status.DISPONIVEL;
-	
+	private Status status;
+
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
-	public Acervo(Long idAcervo, String nome, String editora, LocalDateTime dtInclusao, Status situacao, Long isbn) {
-		this.idAcervo = idAcervo;
-		this.nome = nome;
+	public Acervo() {
+
+	}
+
+	public Acervo(Long idObra, String nomeObra, String editora, LocalDate dtPublicacao, LocalDateTime dtInclusaoObra, Status status, String isbn) {
+		this.idObra = idObra;
+		this.nomeObra = nomeObra;
 		this.editora = editora;
-		this.dtInclusao = dtInclusao;
-		this.situacao = situacao;
+		this.dtPublicacao = dtPublicacao;
+		this.dtInclusaoObra = dtInclusaoObra;
+		this.status = status;
 		this.isbn = isbn;
 	}
 
