@@ -1,9 +1,11 @@
 package br.com.fatec.sistema.bibliotecario.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +24,11 @@ public class UsuarioController {
 
 	@Autowired
 	private ServiceUsuario serviceUsuario;
+	
+	@GetMapping("/buscarUsuario/{id}")
+	public Optional<Usuario> buscarUsuario(@PathVariable("id")Long id) {
+		return serviceUsuario.buscarUsuario(id);
+	}
 
 	@GetMapping("/buscarTodos")
 	public List<Usuario> buscarTodos() {
@@ -30,13 +37,17 @@ public class UsuarioController {
 
 	@PostMapping("/incluir")
 	public void incluirUsuario(@RequestBody Usuario usuario) {
-		System.out.println(usuario);
 		serviceUsuario.incluir(usuario);
 	}
 
 	@PutMapping("/alterar/{id}")
-	public void alterarUsuario(@PathVariable("id")Long id, @RequestBody Usuario usuario) {
+	public void alterarUsuario(@PathVariable("id") Long id, @RequestBody Usuario usuario) {
 		serviceUsuario.alterar(id, usuario);
+	}
+
+	@DeleteMapping("/deletar/{id}")
+	public void deletarUsuario(@PathVariable("id") Long id) {
+		serviceUsuario.deletar(id);
 	}
 
 }

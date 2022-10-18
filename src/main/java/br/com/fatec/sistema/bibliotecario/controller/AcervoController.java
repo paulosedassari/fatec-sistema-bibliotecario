@@ -2,8 +2,6 @@ package br.com.fatec.sistema.bibliotecario.controller;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,19 +31,17 @@ public class AcervoController {
 
 	@PostMapping("/incluir")
 	public void incluirObra(@RequestBody Acervo acervo) {
-		System.out.println(acervo);
 		serviceAcervo.incluirObra(acervo);
 
 	}
 
-	@PutMapping("/alterar")
-	public void alterarObra(@RequestBody Acervo acervo) {
-		serviceAcervo.alterar(acervo);
+	@PutMapping("/alterar/{id}")
+	public void alterarObra(@PathVariable("id") Long id, @RequestBody Acervo acervo) {
+		serviceAcervo.alterar(id, acervo);
 	}
 
 	@DeleteMapping("/deletar/{id}")
 	public void deletarObra(@PathVariable("id") Long id) {
-		System.out.println(id);
 		serviceAcervo.deletar(id);
 	}
 
