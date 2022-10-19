@@ -1,6 +1,7 @@
 package br.com.fatec.sistema.bibliotecario.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.fatec.sistema.bibliotecario.model.Acervo;
 import br.com.fatec.sistema.bibliotecario.model.DadosEmprestimo;
 import br.com.fatec.sistema.bibliotecario.model.Emprestimo;
+import br.com.fatec.sistema.bibliotecario.model.EmprestimoCompleto;
 import br.com.fatec.sistema.bibliotecario.model.Usuario;
 import br.com.fatec.sistema.bibliotecario.repository.AcervoRepository;
 import br.com.fatec.sistema.bibliotecario.repository.EmprestimoRepository;
@@ -26,8 +28,26 @@ public class ServiceEmprestimo {
 	@Autowired
 	private AcervoRepository acervoRepository;
 
-	public List<Emprestimo> findAll() {
-		return emprestimoRepository.findAll();
+	public List<EmprestimoCompleto> buscarTodos() {
+
+		List<Emprestimo> result = emprestimoRepository.buscar();
+
+		List<EmprestimoCompleto> listEmprestimo = new ArrayList<EmprestimoCompleto>();
+
+		for (Emprestimo emprestimo : result) {
+			EmprestimoCompleto emprestimoCompleto = new EmprestimoCompleto();
+
+			emprestimoCompleto.setIdEmprestimo(emprestimo.getIdEmprestimo());
+			emprestimoCompleto.setNomeUsuario(emprestimo.getUsuario().getNomeUsuario());
+			emprestimoCompleto.setNomeObra(emprestimo.getObra().getNomeObra());
+			emprestimoCompleto.setDtEmprestimo(emprestimo.getDtEmprestimo());
+			emprestimoCompleto.setDtDevolucao(emprestimo.getDtDevolucao());
+
+			listEmprestimo.add(emprestimoCompleto);
+
+		}
+
+		return listEmprestimo;
 	}
 
 	public void associarEmprestimo(DadosEmprestimo dadosemprestimo) {

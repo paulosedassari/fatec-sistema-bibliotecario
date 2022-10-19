@@ -37,8 +37,7 @@ public class Emprestimo implements Serializable {
 
 	}
 
-	public Emprestimo(LocalDateTime dtEmprestimo, LocalDateTime dtDevolucao, Acervo idObra,
-			Usuario idUsuario) {
+	public Emprestimo(LocalDateTime dtEmprestimo, LocalDateTime dtDevolucao, Acervo idObra, Usuario idUsuario) {
 		this.dtEmprestimo = dtEmprestimo;
 		this.dtDevolucao = dtDevolucao;
 		this.obra = idObra;

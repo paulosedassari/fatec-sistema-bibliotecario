@@ -1,5 +1,6 @@
 package br.com.fatec.sistema.bibliotecario.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fatec.sistema.bibliotecario.model.DadosEmprestimo;
-import br.com.fatec.sistema.bibliotecario.model.Emprestimo;
+import br.com.fatec.sistema.bibliotecario.model.EmprestimoCompleto;
 import br.com.fatec.sistema.bibliotecario.service.ServiceEmprestimo;
 
 @RestController
@@ -23,9 +24,9 @@ public class EmprestimoController {
 	private ServiceEmprestimo serviceEmprestimo;
 
 	@GetMapping("/buscarTodos")
-	public List<Emprestimo> buscarTodos() {
-		System.out.println("passou aqui");
-		return serviceEmprestimo.findAll();
+	public List<EmprestimoCompleto> buscarTodos() {
+		List<EmprestimoCompleto> buscarTodos = serviceEmprestimo.buscarTodos();
+		return buscarTodos;
 	}
 
 	@PostMapping("/incluir")
