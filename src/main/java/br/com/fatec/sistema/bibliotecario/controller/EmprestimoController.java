@@ -26,6 +26,7 @@ public class EmprestimoController {
 	@GetMapping("/buscarTodos")
 	public List<EmprestimoCompleto> buscarTodos() {
 		List<EmprestimoCompleto> buscarTodos = serviceEmprestimo.buscarTodos();
+		buscarTodos.forEach(System.out::println);
 		return buscarTodos;
 	}
 

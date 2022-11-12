@@ -16,7 +16,7 @@ public class EmprestimoCompleto implements Serializable {
 
 	private LocalDateTime dtEmprestimo;
 	private LocalDateTime dtDevolucao;
-	
+
 	private Long idUsuario = 0l;
 
 	private String nomeUsuario = "";

@@ -31,6 +31,7 @@ public class AcervoController {
 
 	@PostMapping("/incluir")
 	public void incluirObra(@RequestBody Acervo acervo) {
+		System.out.println(acervo.getStatus());
 		serviceAcervo.incluirObra(acervo);
 
 	}

@@ -1,6 +1,7 @@
 package br.com.fatec.sistema.bibliotecario.service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,8 @@ public class ServiceEmprestimo {
 	@Autowired
 	private AcervoRepository acervoRepository;
 
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 	public List<EmprestimoCompleto> buscarTodos() {
 
 		List<Emprestimo> result = emprestimoRepository.buscar();
@@ -40,6 +43,7 @@ public class ServiceEmprestimo {
 			emprestimoCompleto.setIdEmprestimo(emprestimo.getIdEmprestimo());
 			emprestimoCompleto.setNomeUsuario(emprestimo.getUsuario().getNomeUsuario());
 			emprestimoCompleto.setNomeObra(emprestimo.getObra().getNomeObra());
+			emprestimoCompleto.setIsbn(emprestimo.getObra().getIsbn());
 			emprestimoCompleto.setDtEmprestimo(emprestimo.getDtEmprestimo());
 			emprestimoCompleto.setDtDevolucao(emprestimo.getDtDevolucao());
 
@@ -51,15 +55,28 @@ public class ServiceEmprestimo {
 	}
 
 	public void associarEmprestimo(DadosEmprestimo dadosemprestimo) {
+
 		Usuario usuarioEncontrado = usuarioRepository.verificarUsuario(dadosemprestimo.getRa());
 		Acervo acervoEncontrado = acervoRepository.verificarAcervo(dadosemprestimo.getIsbn());
 
 		LocalDateTime date = LocalDateTime.now();
-
 		Emprestimo novoEmprestimo = new Emprestimo(date, date.plusDays(7), acervoEncontrado, usuarioEncontrado);
 
-		Emprestimo usuarioAdd = emprestimoRepository.save(novoEmprestimo);
-//		emprestimoRepository.findById(usuarioAdd.getIdEmprestimo());
+		try {
+
+			emprestimoRepository.save(novoEmprestimo);
+
+			acervoRepository.atualizaStatusObra(acervoEncontrado.getIdObra());
+
+		} catch (Exception e) {
+
+		}
+
+	}
+
+	public String formatarData(LocalDateTime localDateTime) {
+		String dataFormatada = localDateTime.format(formatter);
+		return dataFormatada;
 	}
 
 }

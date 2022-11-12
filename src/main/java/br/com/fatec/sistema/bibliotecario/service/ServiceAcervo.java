@@ -22,16 +22,9 @@ public class ServiceAcervo {
 		String editora = acervo.getEditora();
 		String isbn = acervo.getIsbn();
 		String nomeObra = acervo.getNomeObra();
-		String status;
 
-		if (acervo.getStatus().name() == "DISPONIVEL") {
-			status = "DISPONIVEL";
-		} else {
-			status = "EMPRESTADO";
-		}
-
-		System.out.println(idObra + " " + dtPublicacao + " " + editora + " " + isbn + " " + nomeObra + " " + status);
-		acervoRepository.update(idObra, dtPublicacao, editora, isbn, nomeObra, status);
+		System.out.println(idObra + " " + dtPublicacao + " " + editora + " " + isbn + " " + nomeObra);
+		acervoRepository.update(idObra, dtPublicacao, editora, isbn, nomeObra);
 	}
 
 	public List<Acervo> buscarTodos() {
