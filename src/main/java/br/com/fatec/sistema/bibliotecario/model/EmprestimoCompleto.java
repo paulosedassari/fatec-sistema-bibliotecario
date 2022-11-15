@@ -14,8 +14,8 @@ public class EmprestimoCompleto implements Serializable {
 
 	private Long idEmprestimo = 0l;
 
-	private LocalDateTime dtEmprestimo;
-	private LocalDateTime dtDevolucao;
+	private LocalDate dtEmprestimo;
+	private LocalDate dtDevolucao;
 
 	private Long idUsuario = 0l;
 

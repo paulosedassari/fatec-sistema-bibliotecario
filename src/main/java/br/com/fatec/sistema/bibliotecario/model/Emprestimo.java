@@ -1,7 +1,7 @@
 package br.com.fatec.sistema.bibliotecario.model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,8 +23,8 @@ public class Emprestimo implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idEmprestimo = 0l;
 
-	private LocalDateTime dtEmprestimo;
-	private LocalDateTime dtDevolucao;
+	private LocalDate dtEmprestimo;
+	private LocalDate dtDevolucao;
 
 	@OneToOne
 	private Acervo obra;
@@ -37,7 +37,7 @@ public class Emprestimo implements Serializable {
 
 	}
 
-	public Emprestimo(LocalDateTime dtEmprestimo, LocalDateTime dtDevolucao, Acervo idObra, Usuario idUsuario) {
+	public Emprestimo(LocalDate dtEmprestimo, LocalDate dtDevolucao, Acervo idObra, Usuario idUsuario) {
 		this.dtEmprestimo = dtEmprestimo;
 		this.dtDevolucao = dtDevolucao;
 		this.obra = idObra;
