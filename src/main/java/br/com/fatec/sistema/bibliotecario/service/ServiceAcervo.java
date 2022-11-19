@@ -39,4 +39,10 @@ public class ServiceAcervo {
 		acervoRepository.deleteById(id);
 	}
 
+	public List<Acervo> relatorioAcervo(String primeiraData, String segundaData) {
+		List<Acervo> result = acervoRepository.buscarRelatorioAcervoPorData(primeiraData, segundaData);
+
+		return result;
+	}
+
 }

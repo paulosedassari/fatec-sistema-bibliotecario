@@ -1,4 +1,4 @@
-package br.com.fatec.sistema.bibliotecario.service.relatorios;
+package br.com.fatec.sistema.bibliotecario.service.relatorios.pdf;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -17,14 +17,15 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import br.com.fatec.sistema.bibliotecario.model.EmprestimoCompleto;
 
-public class EmprestadosPDF {
+import br.com.fatec.sistema.bibliotecario.model.Acervo;
 
-	private List<EmprestimoCompleto> emprestimoCompleto;
+public class AcervoPDF {
 
-	public EmprestadosPDF(List<EmprestimoCompleto> emprestimoCompleto2) {
-		this.emprestimoCompleto = emprestimoCompleto2;
+	private List<Acervo> acervo;
+
+	public AcervoPDF(List<Acervo> acervo) {
+		this.acervo = acervo;
 	}
 
 	private void writeTableHeader(PdfPTable table) {
@@ -40,7 +41,7 @@ public class EmprestadosPDF {
 
 		cell.setPhrase(new Phrase("Obra", font));
 		table.addCell(cell);
-		
+
 		cell.setPhrase(new Phrase("ISBN/ISSN", font));
 		table.addCell(cell);
 
@@ -57,12 +58,12 @@ public class EmprestadosPDF {
 	 * @param table table Objeto criado com o número de colunas que a tabela terá
 	 */
 	private void writeTableData(PdfPTable table) {
-		for (EmprestimoCompleto i : emprestimoCompleto) {
-			table.addCell(String.valueOf(i.getNomeUsuario()));
+		for (Acervo i : acervo) {
+			table.addCell(String.valueOf(i.getIdObra()));
 			table.addCell(String.valueOf(i.getNomeObra()));
 			table.addCell(String.valueOf(i.getIsbn()));
-			table.addCell(String.valueOf(i.getDtEmprestimo()));
-			table.addCell(String.valueOf(i.getDtDevolucao()));
+			table.addCell(String.valueOf(i.getStatus()));
+			table.addCell(String.valueOf(i.getDtInclusaoObra()));
 		}
 	}
 

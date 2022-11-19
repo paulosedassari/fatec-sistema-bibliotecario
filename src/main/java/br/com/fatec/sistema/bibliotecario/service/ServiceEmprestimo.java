@@ -82,7 +82,7 @@ public class ServiceEmprestimo {
 
 	public List<EmprestimoCompleto> relatorioEmprestimo(String primeiraData, String segundaData) {
 
-		List<Emprestimo> result = emprestimoRepository.buscarrelatorioEmprestimoPorData(primeiraData, segundaData);
+		List<Emprestimo> result = emprestimoRepository.buscarRelatorioEmprestimoPorData(primeiraData, segundaData);
 		List<EmprestimoCompleto> listEmprestimo = new ArrayList<EmprestimoCompleto>();
 
 		for (Emprestimo emprestimo : result) {

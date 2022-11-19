@@ -1,8 +1,11 @@
 package br.com.fatec.sistema.bibliotecario.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import br.com.fatec.sistema.bibliotecario.model.Acervo;
 import br.com.fatec.sistema.bibliotecario.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
@@ -18,6 +21,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	void update(Long idUsuario, String bairro, String categoria, String cep, String cpf, String email,
 			String localidade, String logradouro, String nomeUsuario, Integer numLogradouro, String ra, String telefone,
 			String uf);
+	
+	@Query(value = "select * from usuario where dt_inclusao_usuario between :primeiraData and :segundaData", nativeQuery = true)
+	public List<Usuario> buscarRelatorioUsuarioPorData(String primeiraData, String segundaData);
 
 //	@Query(value = "UPDATE usuario SET id_usuario = : WHERE usuario.ra = :ra", nativeQuery = true)
 //	void update(Usuario usuario, Long id);

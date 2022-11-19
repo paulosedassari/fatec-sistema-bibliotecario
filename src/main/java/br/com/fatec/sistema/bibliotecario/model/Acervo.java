@@ -2,7 +2,6 @@ package br.com.fatec.sistema.bibliotecario.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -29,7 +28,7 @@ public class Acervo implements Serializable {
 	private String nomeObra = "";
 	private String editora = "";
 	private LocalDate dtPublicacao;
-	private LocalDateTime dtInclusaoObra = LocalDateTime.now();
+	private LocalDate dtInclusaoObra = LocalDate.now();
 	private String isbn = "";
 
 	@Enumerated(EnumType.STRING)
@@ -43,7 +42,8 @@ public class Acervo implements Serializable {
 
 	}
 
-	public Acervo(Long idObra, String nomeObra, String editora, LocalDate dtPublicacao, LocalDateTime dtInclusaoObra, Status status, String isbn) {
+	public Acervo(Long idObra, String nomeObra, String editora, LocalDate dtPublicacao, LocalDate dtInclusaoObra,
+			Status status, String isbn) {
 		this.idObra = idObra;
 		this.nomeObra = nomeObra;
 		this.editora = editora;

@@ -1,16 +1,18 @@
 package br.com.fatec.sistema.bibliotecario.service.relatorios;
 
+import java.time.LocalDate;
+
 import org.springframework.stereotype.Service;
 
 @Service
 public class TratamentoDatas {
 
-	public String formatarData(String data) {
+	public String formatarDataParaPesquisaDB(String data) {
 
 		String[] temp = data.split(" ");
 		String dataFormat = "";
 
-		switch (temp[1]) {
+		switch (temp[1].trim()) {
 		case "Jan":
 			temp[1] = "01";
 			break;
@@ -50,10 +52,23 @@ public class TratamentoDatas {
 		default:
 			break;
 		}
-		
+
 		dataFormat = temp[3].concat("/").concat(temp[1]).concat("/").concat(temp[2]);
-		
+
 		return dataFormat;
+	}
+
+	public String retornaDataCorreta(LocalDate data) {
+		
+		String string = data.toString();
+
+		String[] temp = string.split("-");
+		String dataFormat = "";
+
+		dataFormat = temp[2].concat("/").concat(temp[1]).concat("/").concat(temp[0]);
+
+		return dataFormat;
+
 	}
 
 }

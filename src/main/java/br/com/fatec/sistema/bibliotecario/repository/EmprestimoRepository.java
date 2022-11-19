@@ -15,6 +15,6 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
 	public List<Emprestimo> buscar();
 
 	@Query(value = "select * from emprestimo where dt_emprestimo between :primeiraData and :segundaData" , nativeQuery = true)
-	public List<Emprestimo> buscarrelatorioEmprestimoPorData(String primeiraData, String segundaData);
+	public List<Emprestimo> buscarRelatorioEmprestimoPorData(String primeiraData, String segundaData);
 
 }

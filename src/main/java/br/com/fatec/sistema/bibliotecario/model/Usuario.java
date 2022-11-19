@@ -2,7 +2,6 @@ package br.com.fatec.sistema.bibliotecario.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -31,7 +30,7 @@ public class Usuario implements Serializable {
 	private String email = "";
 	private String telefone = "";
 	private LocalDate dtNascimento;
-	private LocalDateTime dtInclusaoUsuario = LocalDateTime.now();
+	private LocalDate dtInclusaoUsuario = LocalDate.now();
 	private String ra = "";
 	private String cep = "";
 	private String localidade = "";
@@ -54,7 +53,7 @@ public class Usuario implements Serializable {
 	}
 
 	public Usuario(Long idUsuario, String nome, String cpf, String email, String telefone, LocalDate dtNascimento,
-			LocalDateTime dtInclusao, String ra, String cep, String localidade, String bairro, String logradouro,
+			LocalDate dtInclusao, String ra, String cep, String localidade, String bairro, String logradouro,
 			Integer numLogradouro, String uf, Status categoria, List<Acervo> obras) {
 		this.idUsuario = idUsuario;
 		this.nomeUsuario = nome;

@@ -56,5 +56,10 @@ public class ServiceUsuario {
 	public void deletar(Long id) {
 		usuarioRepository.deleteById(id);
 	}
+	
+	public List<Usuario> relatorioUsuario(String primeiraData, String segundaData) {
+		List<Usuario> result = usuarioRepository.buscarRelatorioUsuarioPorData(primeiraData, segundaData);
+		return result;
+	}
 
 }

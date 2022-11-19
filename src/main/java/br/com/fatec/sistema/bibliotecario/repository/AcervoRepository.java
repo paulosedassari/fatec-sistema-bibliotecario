@@ -1,6 +1,7 @@
 package br.com.fatec.sistema.bibliotecario.repository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,5 +21,8 @@ public interface AcervoRepository extends JpaRepository<Acervo, Long> {
 
 	@Query(value = "update acervo set status = 'EMPRESTADO' where id_obra = :idObra", nativeQuery = true)
 	public void atualizaStatusObra(Long idObra);
+
+	@Query(value = "select * from acervo where dt_inclusao_obra between :primeiraData and :segundaData", nativeQuery = true)
+	public List<Acervo> buscarRelatorioAcervoPorData(String primeiraData, String segundaData);
 
 }
