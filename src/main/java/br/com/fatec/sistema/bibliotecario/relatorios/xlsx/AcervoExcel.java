@@ -1,4 +1,4 @@
-package br.com.fatec.sistema.bibliotecario.service.relatorios.xlsx;
+package br.com.fatec.sistema.bibliotecario.relatorios.xlsx;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.fatec.sistema.bibliotecario.model.Acervo;
-import br.com.fatec.sistema.bibliotecario.service.relatorios.TratamentoDatas;
+import br.com.fatec.sistema.bibliotecario.utils.TratamentoDatas;
 
 @Service
 public class AcervoExcel {
@@ -27,7 +27,7 @@ public class AcervoExcel {
 
 	public ByteArrayInputStream gerarExcelEmprestimo(List<Acervo> acervo) throws IOException {
 		try (Workbook workbook = new XSSFWorkbook()) {
-			Sheet sheet = workbook.createSheet("Relatorio - Empréstimo");
+			Sheet sheet = workbook.createSheet("Relatorio - Acervo");
 
 			Row row = sheet.createRow(0);
 

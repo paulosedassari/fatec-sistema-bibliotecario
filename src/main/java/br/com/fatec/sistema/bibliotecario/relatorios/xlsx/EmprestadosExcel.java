@@ -1,4 +1,4 @@
-package br.com.fatec.sistema.bibliotecario.service.relatorios.xlsx;
+package br.com.fatec.sistema.bibliotecario.relatorios.xlsx;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -16,16 +16,16 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.fatec.sistema.bibliotecario.model.Usuario;
-import br.com.fatec.sistema.bibliotecario.service.relatorios.TratamentoDatas;
+import br.com.fatec.sistema.bibliotecario.model.EmprestimoCompleto;
+import br.com.fatec.sistema.bibliotecario.utils.TratamentoDatas;
 
 @Service
-public class UsuarioExcel {
+public class EmprestadosExcel {
 
 	@Autowired
 	private TratamentoDatas tratamentoDatas;
 
-	public ByteArrayInputStream gerarExcelEmprestimo(List<Usuario> usuario) throws IOException {
+	public ByteArrayInputStream gerarExcelEmprestimo(List<EmprestimoCompleto> emprestimoCompleto) throws IOException {
 		try (Workbook workbook = new XSSFWorkbook()) {
 			Sheet sheet = workbook.createSheet("Relatorio - Empréstimo");
 
@@ -57,12 +57,12 @@ public class UsuarioExcel {
 
 			Row dataRow = sheet.createRow(1);
 
-			for (Usuario e : usuario) {
-				dataRow.createCell(0).setCellValue(e.getIdUsuario());
-				dataRow.createCell(1).setCellValue(e.getNomeUsuario());
-				dataRow.createCell(2).setCellValue(e.getCategoria().toString());
-				dataRow.createCell(3).setCellValue(tratamentoDatas.retornaDataCorreta(e.getDtInclusaoUsuario()));
-				dataRow.createCell(4).setCellValue(e.getEmail());
+			for (EmprestimoCompleto e : emprestimoCompleto) {
+				dataRow.createCell(0).setCellValue(e.getNomeUsuario());
+				dataRow.createCell(1).setCellValue(e.getNomeObra());
+				dataRow.createCell(2).setCellValue(e.getIsbn());
+				dataRow.createCell(3).setCellValue(tratamentoDatas.retornaDataCorreta(e.getDtEmprestimo()));
+				dataRow.createCell(4).setCellValue(tratamentoDatas.retornaDataCorreta(e.getDtDevolucao()));
 			}
 
 			sheet.autoSizeColumn(0);

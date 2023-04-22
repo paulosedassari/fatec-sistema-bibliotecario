@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import br.com.fatec.sistema.bibliotecario.utils.Status;
+import br.com.fatec.sistema.bibliotecario.enums.Status;
 import lombok.Data;
 
 @Data
@@ -30,6 +30,7 @@ public class Acervo implements Serializable {
 	private LocalDate dtPublicacao;
 	private LocalDate dtInclusaoObra = LocalDate.now();
 	private String isbn = "";
+	private Integer numPaginas = 0;
 
 	@Enumerated(EnumType.STRING)
 	private Status status;
@@ -43,7 +44,7 @@ public class Acervo implements Serializable {
 	}
 
 	public Acervo(Long idObra, String nomeObra, String editora, LocalDate dtPublicacao, LocalDate dtInclusaoObra,
-			Status status, String isbn) {
+			Status status, String isbn, Integer numPaginas) {
 		this.idObra = idObra;
 		this.nomeObra = nomeObra;
 		this.editora = editora;
@@ -51,6 +52,7 @@ public class Acervo implements Serializable {
 		this.dtInclusaoObra = dtInclusaoObra;
 		this.status = status;
 		this.isbn = isbn;
+		this.numPaginas = numPaginas;
 	}
 
 }

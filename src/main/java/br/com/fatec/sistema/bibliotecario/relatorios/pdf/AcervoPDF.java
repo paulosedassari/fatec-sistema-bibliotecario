@@ -1,4 +1,4 @@
-package br.com.fatec.sistema.bibliotecario.service.relatorios.pdf;
+package br.com.fatec.sistema.bibliotecario.relatorios.pdf;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -19,15 +19,13 @@ import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
 import br.com.fatec.sistema.bibliotecario.model.Acervo;
-import br.com.fatec.sistema.bibliotecario.model.EmprestimoCompleto;
-import br.com.fatec.sistema.bibliotecario.model.Usuario;
 
-public class EmprestadosPDF {
+public class AcervoPDF {
 
-	private List<EmprestimoCompleto> emprestimoCompleto;
-	
-	public EmprestadosPDF(List<EmprestimoCompleto> emprestimoCompleto2) {
-		this.emprestimoCompleto = emprestimoCompleto2;
+	private List<Acervo> acervo;
+
+	public AcervoPDF(List<Acervo> acervo) {
+		this.acervo = acervo;
 	}
 
 	private void writeTableHeader(PdfPTable table) {
@@ -60,12 +58,12 @@ public class EmprestadosPDF {
 	 * @param table table Objeto criado com o número de colunas que a tabela terá
 	 */
 	private void writeTableData(PdfPTable table) {
-		for (EmprestimoCompleto i : emprestimoCompleto) {
-			table.addCell(String.valueOf(i.getNomeUsuario()));
+		for (Acervo i : acervo) {
+			table.addCell(String.valueOf(i.getIdObra()));
 			table.addCell(String.valueOf(i.getNomeObra()));
 			table.addCell(String.valueOf(i.getIsbn()));
-			table.addCell(String.valueOf(i.getDtEmprestimo()));
-			table.addCell(String.valueOf(i.getDtDevolucao()));
+			table.addCell(String.valueOf(i.getStatus()));
+			table.addCell(String.valueOf(i.getDtInclusaoObra()));
 		}
 	}
 
@@ -82,7 +80,7 @@ public class EmprestadosPDF {
 		font.setSize(15);
 		font.setColor(Color.BLACK);
 
-		Paragraph p = new Paragraph("OBRAS EMPRESTADAS", font);
+		Paragraph p = new Paragraph("OBRAS CADASTRADAS NO ACERVO", font);
 		p.setAlignment(Paragraph.ALIGN_CENTER);
 
 		document.add(p);

@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import br.com.fatec.sistema.bibliotecario.utils.Status;
+import br.com.fatec.sistema.bibliotecario.enums.Status;
 import lombok.Data;
 
 @Data
@@ -26,6 +26,7 @@ public class Usuario implements Serializable {
 	private Long idUsuario = 0l;
 
 	private String nomeUsuario = "";
+	private String apelido = "";
 	private String cpf = "";
 	private String email = "";
 	private String telefone = "";
@@ -52,11 +53,12 @@ public class Usuario implements Serializable {
 
 	}
 
-	public Usuario(Long idUsuario, String nome, String cpf, String email, String telefone, LocalDate dtNascimento,
-			LocalDate dtInclusao, String ra, String cep, String localidade, String bairro, String logradouro,
-			Integer numLogradouro, String uf, Status categoria, List<Acervo> obras) {
+	public Usuario(Long idUsuario, String nome, String apelido, String cpf, String email, String telefone,
+			LocalDate dtNascimento, LocalDate dtInclusao, String ra, String cep, String localidade, String bairro,
+			String logradouro, Integer numLogradouro, String uf, Status categoria, List<Acervo> obras) {
 		this.idUsuario = idUsuario;
 		this.nomeUsuario = nome;
+		this.apelido = apelido;
 		this.cpf = cpf;
 		this.email = email;
 		this.telefone = telefone;

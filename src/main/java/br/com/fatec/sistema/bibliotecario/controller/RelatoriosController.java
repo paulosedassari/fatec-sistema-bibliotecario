@@ -18,16 +18,16 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fatec.sistema.bibliotecario.model.Acervo;
 import br.com.fatec.sistema.bibliotecario.model.EmprestimoCompleto;
 import br.com.fatec.sistema.bibliotecario.model.Usuario;
-import br.com.fatec.sistema.bibliotecario.service.ServiceAcervo;
-import br.com.fatec.sistema.bibliotecario.service.ServiceEmprestimo;
-import br.com.fatec.sistema.bibliotecario.service.ServiceUsuario;
-import br.com.fatec.sistema.bibliotecario.service.relatorios.TratamentoDatas;
-import br.com.fatec.sistema.bibliotecario.service.relatorios.pdf.AcervoPDF;
-import br.com.fatec.sistema.bibliotecario.service.relatorios.pdf.EmprestadosPDF;
-import br.com.fatec.sistema.bibliotecario.service.relatorios.pdf.UsuarioPDF;
-import br.com.fatec.sistema.bibliotecario.service.relatorios.xlsx.AcervoExcel;
-import br.com.fatec.sistema.bibliotecario.service.relatorios.xlsx.EmprestadosExcel;
-import br.com.fatec.sistema.bibliotecario.service.relatorios.xlsx.UsuarioExcel;
+import br.com.fatec.sistema.bibliotecario.relatorios.pdf.AcervoPDF;
+import br.com.fatec.sistema.bibliotecario.relatorios.pdf.EmprestadosPDF;
+import br.com.fatec.sistema.bibliotecario.relatorios.pdf.UsuarioPDF;
+import br.com.fatec.sistema.bibliotecario.relatorios.xlsx.AcervoExcel;
+import br.com.fatec.sistema.bibliotecario.relatorios.xlsx.EmprestadosExcel;
+import br.com.fatec.sistema.bibliotecario.relatorios.xlsx.UsuarioExcel;
+import br.com.fatec.sistema.bibliotecario.service.impl.ServiceAcervoImpl;
+import br.com.fatec.sistema.bibliotecario.service.impl.ServiceEmprestimoImpl;
+import br.com.fatec.sistema.bibliotecario.service.impl.ServiceUsuarioImpl;
+import br.com.fatec.sistema.bibliotecario.utils.TratamentoDatas;
 
 @RestController
 @RequestMapping("/relatorios")
@@ -35,13 +35,13 @@ import br.com.fatec.sistema.bibliotecario.service.relatorios.xlsx.UsuarioExcel;
 public class RelatoriosController {
 
 	@Autowired
-	private ServiceEmprestimo serviceEmprestimo;
+	private ServiceEmprestimoImpl serviceEmprestimo;
 
 	@Autowired
-	private ServiceAcervo serviceAcervo;
+	private ServiceAcervoImpl serviceAcervo;
 
 	@Autowired
-	private ServiceUsuario serviceUsuario;
+	private ServiceUsuarioImpl serviceUsuario;
 
 	@Autowired
 	private AcervoExcel acervoExcel;

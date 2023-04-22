@@ -1,4 +1,4 @@
-package br.com.fatec.sistema.bibliotecario.service.relatorios.pdf;
+package br.com.fatec.sistema.bibliotecario.relatorios.pdf;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -18,14 +18,14 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
-import br.com.fatec.sistema.bibliotecario.model.Usuario;
+import br.com.fatec.sistema.bibliotecario.model.EmprestimoCompleto;
 
-public class UsuarioPDF {
+public class EmprestadosPDF {
 
-	private List<Usuario> usuario;
+	private List<EmprestimoCompleto> emprestimoCompleto;
 
-	public UsuarioPDF(List<Usuario> usuario) {
-		this.usuario = usuario;
+	public EmprestadosPDF(List<EmprestimoCompleto> emprestimoCompleto2) {
+		this.emprestimoCompleto = emprestimoCompleto2;
 	}
 
 	private void writeTableHeader(PdfPTable table) {
@@ -36,19 +36,19 @@ public class UsuarioPDF {
 		Font font = FontFactory.getFont(FontFactory.HELVETICA);
 		font.setColor(Color.BLACK);
 
-		cell.setPhrase(new Phrase("ID Usuario", font));
-		table.addCell(cell);
-
 		cell.setPhrase(new Phrase("Usuario", font));
 		table.addCell(cell);
 
-		cell.setPhrase(new Phrase("Categoria", font));
+		cell.setPhrase(new Phrase("Obra", font));
 		table.addCell(cell);
 
-		cell.setPhrase(new Phrase("Data Inclusão", font));
+		cell.setPhrase(new Phrase("ISBN/ISSN", font));
 		table.addCell(cell);
 
-		cell.setPhrase(new Phrase("Email", font));
+		cell.setPhrase(new Phrase("Data Emprestimo", font));
+		table.addCell(cell);
+
+		cell.setPhrase(new Phrase("Data Devolucao", font));
 		table.addCell(cell);
 	}
 
@@ -58,12 +58,12 @@ public class UsuarioPDF {
 	 * @param table table Objeto criado com o número de colunas que a tabela terá
 	 */
 	private void writeTableData(PdfPTable table) {
-		for (Usuario i : usuario) {
-			table.addCell(String.valueOf(i.getIdUsuario()));
+		for (EmprestimoCompleto i : emprestimoCompleto) {
 			table.addCell(String.valueOf(i.getNomeUsuario()));
-			table.addCell(String.valueOf(i.getCategoria()));
-			table.addCell(String.valueOf(i.getDtInclusaoUsuario()));
-			table.addCell(String.valueOf(i.getEmail()));
+			table.addCell(String.valueOf(i.getNomeObra()));
+			table.addCell(String.valueOf(i.getIsbn()));
+			table.addCell(String.valueOf(i.getDtEmprestimo()));
+			table.addCell(String.valueOf(i.getDtDevolucao()));
 		}
 	}
 

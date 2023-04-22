@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fatec.sistema.bibliotecario.model.Acervo;
-import br.com.fatec.sistema.bibliotecario.service.ServiceAcervo;
+import br.com.fatec.sistema.bibliotecario.service.impl.ServiceAcervoImpl;
 
 @RestController
 @RequestMapping("/acervo")
@@ -22,7 +22,7 @@ import br.com.fatec.sistema.bibliotecario.service.ServiceAcervo;
 public class AcervoController {
 
 	@Autowired
-	private ServiceAcervo serviceAcervo;
+	private ServiceAcervoImpl serviceAcervo;
 
 	@GetMapping("/buscarTodos")
 	public List<Acervo> buscarTodos() {
@@ -31,7 +31,6 @@ public class AcervoController {
 
 	@PostMapping("/incluir")
 	public void incluirObra(@RequestBody Acervo acervo) {
-		System.out.println(acervo.getStatus());
 		serviceAcervo.incluirObra(acervo);
 
 	}
@@ -42,8 +41,8 @@ public class AcervoController {
 	}
 
 	@DeleteMapping("/deletar/{id}")
-	public void deletarObra(@PathVariable("id") Long id) {
-		serviceAcervo.deletar(id);
+	public Boolean deletarObra(@PathVariable("id") Long id) {
+		return serviceAcervo.deletar(id);
 	}
 
 }

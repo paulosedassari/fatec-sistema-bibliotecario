@@ -1,4 +1,4 @@
-package br.com.fatec.sistema.bibliotecario.service.relatorios.pdf;
+package br.com.fatec.sistema.bibliotecario.relatorios.pdf;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -18,14 +18,14 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
-import br.com.fatec.sistema.bibliotecario.model.Acervo;
+import br.com.fatec.sistema.bibliotecario.model.Usuario;
 
-public class AcervoPDF {
+public class UsuarioPDF {
 
-	private List<Acervo> acervo;
+	private List<Usuario> usuario;
 
-	public AcervoPDF(List<Acervo> acervo) {
-		this.acervo = acervo;
+	public UsuarioPDF(List<Usuario> usuario) {
+		this.usuario = usuario;
 	}
 
 	private void writeTableHeader(PdfPTable table) {
@@ -36,19 +36,19 @@ public class AcervoPDF {
 		Font font = FontFactory.getFont(FontFactory.HELVETICA);
 		font.setColor(Color.BLACK);
 
+		cell.setPhrase(new Phrase("ID Usuario", font));
+		table.addCell(cell);
+
 		cell.setPhrase(new Phrase("Usuario", font));
 		table.addCell(cell);
 
-		cell.setPhrase(new Phrase("Obra", font));
+		cell.setPhrase(new Phrase("Categoria", font));
 		table.addCell(cell);
 
-		cell.setPhrase(new Phrase("ISBN/ISSN", font));
+		cell.setPhrase(new Phrase("Data Inclusão", font));
 		table.addCell(cell);
 
-		cell.setPhrase(new Phrase("Data Emprestimo", font));
-		table.addCell(cell);
-
-		cell.setPhrase(new Phrase("Data Devolucao", font));
+		cell.setPhrase(new Phrase("Email", font));
 		table.addCell(cell);
 	}
 
@@ -58,12 +58,12 @@ public class AcervoPDF {
 	 * @param table table Objeto criado com o número de colunas que a tabela terá
 	 */
 	private void writeTableData(PdfPTable table) {
-		for (Acervo i : acervo) {
-			table.addCell(String.valueOf(i.getIdObra()));
-			table.addCell(String.valueOf(i.getNomeObra()));
-			table.addCell(String.valueOf(i.getIsbn()));
-			table.addCell(String.valueOf(i.getStatus()));
-			table.addCell(String.valueOf(i.getDtInclusaoObra()));
+		for (Usuario i : usuario) {
+			table.addCell(String.valueOf(i.getIdUsuario()));
+			table.addCell(String.valueOf(i.getNomeUsuario()));
+			table.addCell(String.valueOf(i.getCategoria()));
+			table.addCell(String.valueOf(i.getDtInclusaoUsuario()));
+			table.addCell(String.valueOf(i.getEmail()));
 		}
 	}
 
@@ -80,7 +80,7 @@ public class AcervoPDF {
 		font.setSize(15);
 		font.setColor(Color.BLACK);
 
-		Paragraph p = new Paragraph("OBRAS EMPRESTADAS", font);
+		Paragraph p = new Paragraph("USUARIOS CADASTRADOS", font);
 		p.setAlignment(Paragraph.ALIGN_CENTER);
 
 		document.add(p);

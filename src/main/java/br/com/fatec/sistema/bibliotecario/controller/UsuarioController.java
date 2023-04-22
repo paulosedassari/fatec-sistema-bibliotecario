@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fatec.sistema.bibliotecario.model.Usuario;
-import br.com.fatec.sistema.bibliotecario.service.ServiceUsuario;
+import br.com.fatec.sistema.bibliotecario.service.impl.ServiceUsuarioImpl;
 
 @RestController
 @RequestMapping("/usuario")
@@ -23,7 +23,7 @@ import br.com.fatec.sistema.bibliotecario.service.ServiceUsuario;
 public class UsuarioController {
 
 	@Autowired
-	private ServiceUsuario serviceUsuario;
+	private ServiceUsuarioImpl serviceUsuario;
 	
 	@GetMapping("/buscarUsuario/{id}")
 	public Optional<Usuario> buscarUsuario(@PathVariable("id")Long id) {

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import br.com.fatec.sistema.bibliotecario.utils.Status;
+import br.com.fatec.sistema.bibliotecario.enums.Status;
 import lombok.Data;
 
 @Data

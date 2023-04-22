@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import br.com.fatec.sistema.bibliotecario.model.Acervo;
 
+@Repository
 public interface AcervoRepository extends JpaRepository<Acervo, Long> {
 
 	@Query(value = "SELECT * FROM acervo WHERE acervo.isbn = :isbn", nativeQuery = true)
@@ -24,5 +26,8 @@ public interface AcervoRepository extends JpaRepository<Acervo, Long> {
 
 	@Query(value = "select * from acervo where dt_inclusao_obra between :primeiraData and :segundaData", nativeQuery = true)
 	public List<Acervo> buscarRelatorioAcervoPorData(String primeiraData, String segundaData);
+
+	@Query(value = "update acervo set status = 'DISPONIVEL' where id_obra = :idObra", nativeQuery = true)
+	void desassociarStatus(Long idObra);
 
 }

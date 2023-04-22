@@ -1,4 +1,4 @@
-package br.com.fatec.sistema.bibliotecario.utils;
+package br.com.fatec.sistema.bibliotecario.enums;
 
 public enum Status {
 	

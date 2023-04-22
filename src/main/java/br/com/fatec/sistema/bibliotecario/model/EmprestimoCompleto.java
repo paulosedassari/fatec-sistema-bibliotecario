@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import br.com.fatec.sistema.bibliotecario.utils.Status;
+import br.com.fatec.sistema.bibliotecario.enums.Status;
 import lombok.Data;
 
 @Data
